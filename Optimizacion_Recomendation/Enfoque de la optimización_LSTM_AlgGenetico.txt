@@ -1,0 +1,7 @@
+Enfoque de la optimización
+1.	Modelo de predicción: Ya tienes tu modelo (probablemente un modelo LSTM o algún otro modelo predictivo) que predice el consumo de combustible en función de las variables de entrada (como presión, velocidad del motor, etc.).
+2.	Optimización en tiempo real: La idea es ajustar esas variables de entrada para que, cuando se ingresen al modelo, se minimice la predicción del consumo de combustible. No necesitas que el algoritmo genético intente predecir el consumo; lo que necesita hacer es ajustar las variables de entrada (como el Engine Speed, Intake Manifold Pressure, etc.) para minimizar la predicción del consumo de combustible.
+Flujo de trabajo
+1.	Predicción del consumo: Para cada conjunto de valores de entrada (variables de comportamiento del motor, etc.), tu modelo hace una predicción del consumo de combustible.
+2.	Optimización de las variables de entrada: En lugar de predecir el consumo de combustible, ajustas las variables de entrada (por ejemplo, presión del colector, velocidad del motor, etc.) de manera que el consumo de combustible sea el mínimo posible, basado en lo que tu modelo predice.
+Aquí es donde entra el algoritmo genético. El objetivo del algoritmo genético es iterar sobre diferentes combinaciones de las variables de entrada (ajustando sus valores) y encontrar los valores que lleven a la predicción más baja del consumo de combustible.
