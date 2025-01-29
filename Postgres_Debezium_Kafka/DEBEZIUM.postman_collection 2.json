@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "5edc0a84-da82-4ad0-885f-d115a7b0494f",
+		"name": "DEBEZIUM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37777153",
+		"_collection_link": "https://gold-moon-110991.postman.co/workspace/Team-Workspace~c0cc69a0-7a77-42e8-8e74-4026533bc947/collection/37777153-5edc0a84-da82-4ad0-885f-d115a7b0494f?action=share&source=collection_link&creator=37777153"
+	},
+	"item": [
+		{
+			"name": "POSTGRES",
+			"item": [
+				{
+					"name": "Crear un conector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"postgres-connector\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\r\n        \"tasks.max\": \"1\",\r\n        \"database.hostname\": \"postgres\",\r\n        \"database.port\": \"5432\",\r\n        \"database.user\": \"adminms4m\",\r\n        \"database.password\": \"D3m@2024\",\r\n        \"database.dbname\": \"ControlSenseDB\",\r\n        \"database.server.name\": \"localhost\",\r\n        \"key.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        \"key.converter.schemas.enable\": \"false\",\r\n        \"value.converter.schemas.enable\": \"false\",\r\n        \"snapshot.mode\": \"initial\",\r\n        \"topic.prefix\":\"ControlSenseDB\",\r\n        \"plugin.name\": \"pgoutput\",\r\n        \"decimal.handling.mode\": \"double\",\r\n        \"schema.include.list\": \"action, public\",\r\n        \"slot.drop.on.stop\":true\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8083/connectors/",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"connectors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un conector",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8083/connectors/postgres-connector",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"connectors",
+								"postgres-connector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "version",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8083/connector-plugins",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"connector-plugins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los conectores de debezium",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/connectors",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view config conector",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"postgres-csactual-connector\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\r\n        \"tasks.max\": \"1\",\r\n        \"database.hostname\": \"postgres-csactual\",\r\n        \"database.port\": \"5432\",\r\n        \"database.user\": \"adminms4m\",\r\n        \"database.password\": \"D3m@2024\",\r\n        \"database.dbname\": \"ControlSenseDB\",\r\n        \"database.server.name\": \"localhost\",\r\n        \"key.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        \"key.converter.schemas.enable\": \"false\",\r\n        \"value.converter.schemas.enable\": \"false\",\r\n        \"snapshot.mode\": \"initial\",\r\n        \"topic.prefix\":\"ControlSenseDB\",\r\n        \"plugin.name\": \"pgoutput\",\r\n        \"decimal.handling.mode\": \"double\",\r\n        \"schema.include.list\": \"public\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8083/connectors/connector-cscloudnew/config",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"connectors",
+								"connector-cscloudnew",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Offsets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/connectors/postgres-connector/offsets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"connectors",
+								"postgres-connector",
+								"offsets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
